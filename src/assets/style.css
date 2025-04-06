@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Outfit", sans-serif;
+    --datk-gray: #202020;
     --dark-blue: #070F2B;
     --deep-blue: #1B1A55;
     --gray-blue: #535C91;
@@ -18,13 +19,17 @@ body {
 nav.menu-lateral {
     width: 300px;
     height: 100%;
-    background-color: #202020;
+    background-color: var(--datk-gray);
     padding: 40px 0px 40px 1%;
 }
 
 ul {
     height: 100%;
     list-style-type: none;
+}
+
+ul li:hover {
+    background-color: var(--gray-blue);
 }
 
 ul li.item-menu a {
@@ -39,3 +44,10 @@ ul li.item-menu a {
 ul li.item-menu a .txt-link {
     margin-left: 40px;
 }
+
+main {
+    width: 100%;
+    background-color: #292929;
+    color: white;
+}
+
