@@ -131,3 +131,130 @@ tr.selected {
 .action-buttons button:hover {
     background-color: var(--light-blue);
 }
+
+
+/* Popup Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    background-color: var(--dark-gray);
+    padding: 30px;
+    border-radius: 8px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.popup-overlay.active .popup-content {
+    transform: translateY(0);
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gray-blue);
+}
+
+.popup-title {
+    font-size: 24px;
+    color: white;
+}
+
+.close-popup {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-popup:hover {
+    color: var(--light-blue);
+}
+
+.product-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.info-item {
+    margin-bottom: 15px;
+}
+
+.info-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--light-blue);
+    font-size: 14px;
+}
+
+.info-value {
+    font-size: 16px;
+    color: white;
+    padding: 8px 12px;
+    background-color: #3a3a3a;
+    border-radius: 4px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.variation-section {
+    grid-column: span 2;
+}
+
+.variation-title {
+    color: var(--light-blue);
+    margin-bottom: 10px;
+}
+
+.variation-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.variation-btn {
+    padding: 8px 15px;
+    background-color: var(--gray-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.variation-btn:hover {
+    background-color: var(--light-blue);
+}
+
+.variation-btn.active {
+    background-color: var(--light-blue);
+    box-shadow: 0 0 0 2px white;
+}

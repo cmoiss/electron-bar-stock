@@ -53,18 +53,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Coca-Cola</td>
-                            <td>500ml</td>
-                            <td>R$ 5,99</td>
-                            <td>12 unidades</td>
-                            <td>Refrigerante</td>
-                            <td class="action-buttons">
-                                <button><i class="bi bi-pencil"></i></button>
-                                <button><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
+                        <tr class="product-row" data-product='{
+                            "nome": "Coca-Cola",
+                            "categoria": "Refrigerante",
+                            "volume": "2L",
+                            "quantidadePack": "6 unidades",
+                            "estoqueInterno": "24 unidades",
+                            "estoqueExterno": "12 unidades",
+                            "variacoes": ["6 unidades", "12 unidades", "24 unidades"]
+                        }'>
                             <td>Coca-Cola</td>
                             <td>2L</td>
                             <td>R$ 8,99</td>
@@ -75,7 +72,15 @@
                                 <button><i class="bi bi-trash"></i></button>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="product-row" data-product='{
+                            "nome": "Pepsi",
+                            "categoria": "Refrigerante",
+                            "volume": "2L",
+                            "quantidadePack": "6 unidades",
+                            "estoqueInterno": "18 unidades",
+                            "estoqueExterno": "8 unidades",
+                            "variacoes": ["6 unidades", "12 unidades"]
+                        }'>
                             <td>Pepsi</td>
                             <td>2L</td>
                             <td>R$ 7,99</td>
@@ -86,32 +91,46 @@
                                 <button><i class="bi bi-trash"></i></button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Guaraná Antarctica</td>
-                            <td>350ml</td>
-                            <td>R$ 4,50</td>
-                            <td>12 unidades</td>
-                            <td>Refrigerante</td>
-                            <td class="action-buttons">
-                                <button><i class="bi bi-pencil"></i></button>
-                                <button><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Água Mineral</td>
-                            <td>500ml</td>
-                            <td>R$ 2,50</td>
-                            <td>36 unidades</td>
-                            <td>Água</td>
-                            <td class="action-buttons">
-                                <button><i class="bi bi-pencil"></i></button>
-                                <button><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
         </main>
+    </div>
+
+    <!-- Product Popup -->
+    <div class="popup-overlay" id="productPopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2 class="popup-title">Informações do Produto</h2>
+                <button class="close-popup" id="closePopup">&times;</button>
+            </div>
+            <div class="product-info">
+                <div class="info-item">
+                    <span class="info-label">Nome</span>
+                    <div class="info-value" id="popupNome"></div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Categoria</span>
+                    <div class="info-value" id="popupCategoria"></div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Volume</span>
+                    <div class="info-value" id="popupVolume"></div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Estoque Interno</span>
+                    <div class="info-value" id="popupEstoqueInterno"></div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Estoque Externo</span>
+                    <div class="info-value" id="popupEstoqueExterno"></div>
+                </div>
+                <div class="info-item variation-section">
+                    <span class="info-label variation-title">Quantidade por pack</span>
+                    <div class="variation-buttons" id="variationButtons"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="scripts/product-screen-script.js"></script>
