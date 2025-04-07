@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/output.css">
     <link rel="stylesheet" href="assets/product-screen-styles/register.css">
+    <link rel="stylesheet" href="assets/product-screen-styles/delete.css">
 </head>
 
 <body>
@@ -204,9 +205,28 @@
         </div>
     </div>
 
+    <!-- Delete Confirmation Popup -->
+    <div class="popup-overlay" id="deletePopup">
+        <div class="popup-content" style="max-width: 400px;">
+            <div class="popup-header">
+                <h2 class="popup-title">Confirmar Exclusão</h2>
+                <button class="close-popup" id="closeDeletePopup">&times;</button>
+            </div>
+            <div class="confirmation-message">
+                <p class="message">Tem certeza que deseja excluir este produto?</p>
+                <p class="product-name" id="productToDeleteName"></p>
+            </div>
+            <div class="confirmation-buttons">
+                <button class="cancel-btn" id="cancelDelete">Cancelar</button>
+                <button class="delete-btn" id="confirmDelete">Excluir</button>
+            </div>
+        </div>
+    </div>
+
     <script src="scripts/product-screen-script.js"></script>
     <script src="scripts/product-screen-api-consumer.js"></script>
     <script src="scripts/product-screen-scripts/register.js"></script>
+    <script src="scripts/product-screen-scripts/delete.js"></script>
 </body>
 
 </html>
