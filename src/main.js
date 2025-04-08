@@ -11,7 +11,7 @@ const createWindow = () => {
     });
 
     mainWindow.setMenu(null);
-    mainWindow.loadFile("src/index.html");
+    mainWindow.loadFile("index.html");
     mainWindow.maximize();
     mainWindow.show();
     
