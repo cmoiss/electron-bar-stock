@@ -57,6 +57,37 @@ document.addEventListener('DOMContentLoaded', function() {
     closeRegisterPopup.addEventListener('click', closeRegister);
     cancelBtn.addEventListener('click', closeRegister);
 
+    function registerProduct(productData) {
+        productData = {
+            name: productData.name,
+            category: productData.category,
+            volumeVariation: [
+                {
+                    volume: productData.volume,
+                    price: productData.price,
+                    quantity: productData.internalStock
+                }
+            ]
+        }
+
+        fetch("http://localhost:8080/products/save", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(productData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro na requisição");
+            }
+
+            return response.json;
+        })
+        .then(data => console.log("Sucesso: ", data))
+        .catch(error => console.log("Erro: ", error));
+    }
+
     // Handle form submission
     registerForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -75,8 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log('Product to register:', productData);
         
-        // Here you would typically send the data to your backend
-        // For example: registerProduct(productData);
+        registerProduct(productData);
         
         // Close popup and reset form
         closeRegister();
