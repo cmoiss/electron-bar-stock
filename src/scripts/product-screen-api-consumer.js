@@ -31,7 +31,12 @@ function createProductRow(product) {
     tr.innerHTML = `
         <td>${product.name}</td>
         <td>${product.volume || '0'}</td>
-        <td>${product.preco || 'R$ 0,00'}</td>
+        <td>${product.volumeVariation[0].price.price.toLocaleString(
+            'pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }
+        ) || 'R$ 0,00'}</td>
         <td>${product.estoqueInterno || 0}</td>
         <td>${product.category.name}</td>
         <td class="action-buttons">
