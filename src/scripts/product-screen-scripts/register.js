@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const registerBtn = document.getElementById('registerProductBtn');
     const registerPopup = document.getElementById('registerPopup');
     const closeRegisterPopup = document.getElementById('closeRegisterPopup');
@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateVolumeOptions() {
         const selectedUnit = unitSelect.value;
         const options = volumeOptions[selectedUnit];
-        
+
         // Clear existing options
         volumeSelect.innerHTML = '';
-        
+
         // Add default option
         const defaultOption = document.createElement('option');
         defaultOption.value = '';
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         defaultOption.disabled = true;
         defaultOption.selected = true;
         volumeSelect.appendChild(defaultOption);
-        
+
         // Add new options
         options.forEach(option => {
             const opt = document.createElement('option');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     unitSelect.addEventListener('change', updateVolumeOptions);
 
     // Open register popup
-    registerBtn.addEventListener('click', function() {
+    registerBtn.addEventListener('click', function () {
         registerPopup.classList.add('active');
     });
 
@@ -58,40 +58,42 @@ document.addEventListener('DOMContentLoaded', function() {
     cancelBtn.addEventListener('click', closeRegister);
 
     function registerProduct(productData) {
-        productData = {
-            name: productData.name,
+        const productPayload = {
+            name: productData.name, // Melhor usar dot notation
             category: productData.category,
-            volumeVariation: [
+            volumeVariations: [
                 {
-                    volume: productData.volume,
-                    price: productData.price,
-                    quantity: productData.internalStock
+                    volume: parseFloat(productData.volume),
+                    price: parseFloat(productData.price),
+                    internalQuanty: parseInt(productData.internalStock)
                 }
             ]
-        }
+        };
 
         fetch("http://localhost:8080/products/save", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
-            body: JSON.stringify(productData)
+            body: JSON.stringify(productPayload)
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro na requisição");
-            }
-
-            return response.json;
-        })
-        .then(data => console.log("Sucesso: ", data))
-        .catch(error => console.log("Erro: ", error));
+            .then(response => {
+                if (!response.ok) {
+                    // Melhor tratamento de erro - tenta extrair a mensagem do servidor
+                    return response.json().then(err => {
+                        throw new Error(err.message || "Erro na requisição");
+                    });
+                }
+                return response.json();
+            })
+            .then(data => console.log("Sucesso: ", data))
+            .catch(error => console.log("Erro: ", error));
     }
 
     // Handle form submission
-    registerForm.addEventListener('submit', function(e) {
+    registerForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         // Get form data
         const productData = {
             name: document.getElementById('productName').value,
@@ -103,16 +105,16 @@ document.addEventListener('DOMContentLoaded', function() {
             externalStock: parseInt(document.getElementById('externalStock').value) || 0,
             unitsPerPack: document.getElementById('unitsPerPack').value
         };
-        
+
         console.log('Product to register:', productData);
-        
+
         registerProduct(productData);
-        
+
         // Close popup and reset form
         closeRegister();
         registerForm.reset();
         updateVolumeOptions(); // Reset volume options
-        
+
         // Here you would typically add the new product to the table
         // For example: addProductToTable(productData);
     });
